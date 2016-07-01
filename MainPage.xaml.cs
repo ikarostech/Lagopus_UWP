@@ -49,16 +49,24 @@ namespace Lagopus_UWP
         {
             //戻ってきたらいろいろと更新
             //アカウントの更新
-            var newcomer = e.Parameter as OAuth;
+            string[] newcomer = e.Parameter as string[];
             if (newcomer != null)
-            {                  
+            {
+                if (newcomer[3] != "")
+                {
+                    OAuth NewAccount = new OAuth();
+                    NewAccount.RegisterAccessKey(newcomer);
+                    
                     var user = new User();
-                    user.screen_name = newcomer.ScreenName;
+                    //Users.GetIconNormal(user);
+                    //NewAccount.icon = user.UserIcon_normal;
+                    //NewAccount.UserName = user.name;
+                    user.screen_name = newcomer[2];
                     Add_NewAcountList(user);
                     Add_ComboboxAccount(user);
-                    AccountDictionary.Add(user.screen_name, newcomer);
-                    await Shome_timeline(newcomer);
-                
+                    AccountDictionary.Add(user.screen_name, NewAccount);
+                    await Shome_timeline(NewAccount);
+                }
             }
         }
 
@@ -717,7 +725,7 @@ namespace Lagopus_UWP
         public int favorite_count { get; set; }
         [DataMember]
         public bool favorited { get; set; }
-        //[DataMember]
+        [DataMember]
         public string filter_level { get; set; }
 
         [DataMember]
@@ -725,23 +733,23 @@ namespace Lagopus_UWP
         [DataMember]
         public string id_str { get; set; }
 
-        //[DataMember]
+        [DataMember]
         public string in_reply_to_screen_name { get; set; }
         //[DataMember]
         public decimal in_reply_to_status_id { get; set; }
-        //[DataMember]
+        [DataMember]
         public string in_reply_to_status_id_str { get; set; }
         //[DataMember]
         public decimal in_reply_to_user_id { get; set; }
-        //[DataMember]
+        [DataMember]
         public string in_reply_to_user_id_str { get; set; }
 
-        //[DataMember]
+        [DataMember]
         public string lang { get; set; }
 
         public Place place;
 
-        //[DataMember]
+        [DataMember]
         public bool possibly_sensitive { get; set; }
 
         [DataMember]
@@ -752,21 +760,21 @@ namespace Lagopus_UWP
 
         public Tweet retweeted_status;
 
-        //[DataMember]
+        [DataMember]
         public string source { get; set; }
 
         [DataMember]
         public string text { get; set; }
-        //[DataMember]
+        [DataMember]
         public bool truncated { get; set; }
 
         public User user;
 
-        //[DataMember]
+        [DataMember]
         public bool withheld_copyright { get; set; }
-        //[DataMember]
+        [DataMember]
         public string[] withheld_in_countries { get; set; }
-        //[DataMember]
+        [DataMember]
         public string withheld_scope { get; set; }
 
     }
@@ -898,8 +906,8 @@ namespace Lagopus_UWP
 
     public class OAuth
     {
-        private string ConsumerKey { get { return "rbnqym6bymX52AnG1TJcI0iWD"; } }
-        private string ConsumerSecret { get { return "LBC7S58eRyJ7DcNtmJMjyBoPs0aMhiXIg2obxmnpmOjI7mfMPs"; } }
+        private string ConsumerKey { get { return "hoge"; } }
+        private string ConsumerSecret { get { return "hoge"; } }
 
         private string RequestKey { get; set; }
         private string RequestSecret { get; set; }
