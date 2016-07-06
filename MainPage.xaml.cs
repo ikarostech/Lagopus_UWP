@@ -386,8 +386,8 @@ namespace Lagopus_UWP
                     Tweet created = Serialize.JsontoTweet(result);
 
                     //本線に戻して処理してあげる
-                    await CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(CoreDispatcherPriority.Normal,
-                    () => { Add_TimeLineListView(created, oauth); });
+                    //await CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(CoreDispatcherPriority.Normal,
+                    //() => { Add_TimeLineListView(created, oauth); });
                     if(created.text=="にゃーん")
                     {
                         List<StackPanel> Check_Acount = new List<StackPanel>();
@@ -906,8 +906,9 @@ namespace Lagopus_UWP
 
     public class OAuth
     {
-        private string ConsumerKey { get { return "hoge"; } }
-        private string ConsumerSecret { get { return "hoge"; } }
+        private string ConsumerKey { get { return "rbnqym6bymX52AnG1TJcI0iWD"; } }
+        private string ConsumerSecret { get { return "LBC7S58eRyJ7DcNtmJMjyBoPs0aMhiXIg2obxmnpmOjI7mfMPs"; } }
+
 
         private string RequestKey { get; set; }
         private string RequestSecret { get; set; }
